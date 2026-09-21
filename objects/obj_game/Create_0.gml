@@ -1,7 +1,9 @@
 randomize();
-board_width = 9;
-board_height = 9;
-total_mines = 10;
+board_width = 40;
+board_height = 30;
+total_mines = 200;
+
+flags_to_place = total_mines;
 first_click = true;
 game_stopped = false;
 
@@ -124,10 +126,12 @@ for (var i = 0; i < board_height; i++) {
 
 function check() {
 	var correct_mines = 0;
+	flags_to_place = total_mines;
 	for (var i = 0; i < board_height; i++) {
 		for (var j = 0; j < board_width; j++) {
 			if ((board[i][j] == 9) && (flag_board[i][j] == 1)) { //if mine flagged
 				correct_mines++;
+				flags_to_place--;
 			}
 			if (flag_board[i][j] == 0) { // for every unrevealed tile
 				correct_mines++;
@@ -136,6 +140,7 @@ function check() {
 	}
 	if (correct_mines == total_mines) {
 		show_debug_message("You win!");
+		flags_to_place = 0;
 		game_stopped = true;
 		obj_face.image_index = 4;
 	} else {
