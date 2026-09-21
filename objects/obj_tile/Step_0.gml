@@ -6,6 +6,11 @@ if ((unearthed == false) && (obj_game.game_stopped == false)) {
 		if (mouse_check_button(mb_left) && !flagged) {
 			sprite_index = spr_tile_filled;
 			image_index = 0;
+			obj_face.image_index = 2;
+		} else {
+			if (obj_face.image_index == 2) {
+				obj_face.image_index = 0;
+			}
 		}
 		if (mouse_check_button_released(mb_left) && !flagged) {
 			reveal();

@@ -5,11 +5,16 @@ total_mines = 80;
 first_click = true;
 game_stopped = false;
 
-board_posx = 10;
-board_posy = 10;
-
+board_draw_width = (16 * board_width);
+board_draw_height = (16 * board_height);
+board_posx = room_width/2 - (board_draw_width / 2);
+board_posy = 52;
+board_draw_x = board_posx - 10;
+board_draw_y = board_posy - 52;
 board = []; //0-8 numbers, 9 bombs
 flag_board = [] // 0 hidden, 1 flagged, 2 revealed
+
+instance_create_layer(board_draw_x + (board_draw_width / 2) + 10 - 12,board_draw_y + 14,"game_tiles",obj_face);
 
 // Create blank board
 for (var i = 0; i < board_height; i++) {
@@ -112,7 +117,7 @@ function write_numbers() {
 // Spawn tile objects
 for (var i = 0; i < board_height; i++) {
 	for (var j = 0; j < board_width; j++) {
-		instance_create_layer(board_posx + (16 * j),board_posy + (16 * i),"Instances",obj_tile,{_x: j, _y: i});
+		instance_create_layer(board_posx + (16 * j),board_posy + (16 * i),"game_tiles",obj_tile,{_x: j, _y: i});
 	}
 }
 
@@ -131,6 +136,7 @@ function check() {
 	if (correct_mines == total_mines) {
 		show_debug_message("You win!");
 		game_stopped = true;
+		obj_face.image_index = 4;
 	} else {
 		show_debug_message($"Game not yet won. {correct_mines} vs {total_mines}");
 	}
@@ -361,6 +367,7 @@ function first_click_set(_x,_y) {
 function game_over(_x,_y) {
 	show_debug_message("GAME OVER!!!!")
 	var inst = 0;
+	obj_face.image_index = 3;
 	for (var i = 0; i < board_height; i++) {
 		for (var j = 0; j < board_width; j++) {
 			show_debug_message($"{j},{i}: {board[i][j]} -- {flag_board[i][j]} -- {(i == _y) && (j == _x)}")

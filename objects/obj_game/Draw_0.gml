@@ -1,13 +1,5 @@
-/*var _text = "";
-var _flagtext = "";
-for (var i = 0; i < board_height; i++) {
-	for (var j = 0; j < board_width; j++) {
-		_text += $"{board[i][j]} "
-		_flagtext += $"{flag_board[i][j]} "
-	}
-	_text += "\n"
-	_flagtext += "\n"
-}
-draw_text(10,200,_text);
-draw_text(300,200,_flagtext);
-draw_text(500,0,$"{mouse_x}, {mouse_y}");*/
+var border_offset = 10;
+
+draw_sprite_stretched(spr_gameborder_top,0,board_posx - border_offset, 0, board_draw_width + (border_offset * 2), 44);
+draw_sprite_stretched(spr_gameborder_bottom,0,board_posx - border_offset,44,board_draw_width + (border_offset * 2), board_draw_height + 8 + border_offset);
+//draw_line_colour(room_width/2,0,room_width/2,room_height,c_aqua,c_aqua);

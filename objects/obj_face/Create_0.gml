@@ -1,0 +1,1 @@
+previous_image_index = 0;
