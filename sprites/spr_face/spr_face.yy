@@ -29,8 +29,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"APMinesweeper",
-    "path":"APMinesweeper.yyp",
+    "name":"Game",
+    "path":"folders/Game.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

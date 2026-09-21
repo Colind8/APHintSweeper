@@ -9,8 +9,8 @@
   "name":"obj_tile",
   "overriddenProperties":[],
   "parent":{
-    "name":"APMinesweeper",
-    "path":"APMinesweeper.yyp",
+    "name":"Game",
+    "path":"folders/Game.yy",
   },
   "parentObjectId":null,
   "persistent":false,

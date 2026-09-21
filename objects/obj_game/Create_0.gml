@@ -1,7 +1,7 @@
 randomize();
-board_width = 40;
-board_height = 20;
-total_mines = 80;
+board_width = 9;
+board_height = 9;
+total_mines = 10;
 first_click = true;
 game_stopped = false;
 
@@ -11,6 +11,7 @@ board_posx = room_width/2 - (board_draw_width / 2);
 board_posy = 52;
 board_draw_x = board_posx - 10;
 board_draw_y = board_posy - 52;
+
 board = []; //0-8 numbers, 9 bombs
 flag_board = [] // 0 hidden, 1 flagged, 2 revealed
 
