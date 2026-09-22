@@ -11,6 +11,7 @@
   "defaultScriptType":1,
   "Folders":[
     {"$GMFolder":"","%Name":"Game","folderPath":"folders/Game.yy","name":"Game","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Admin Panel","folderPath":"folders/Admin Panel.yy","name":"Admin Panel","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Inputs","folderPath":"folders/Inputs.yy","name":"Inputs","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Login Page","folderPath":"folders/Login Page.yy","name":"Login Page","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
@@ -28,6 +29,9 @@
     {"id":{"name":"fnt_large","path":"fonts/fnt_large/fnt_large.yy",},},
     {"id":{"name":"fnt_larger","path":"fonts/fnt_larger/fnt_larger.yy",},},
     {"id":{"name":"fnt_small","path":"fonts/fnt_small/fnt_small.yy",},},
+    {"id":{"name":"obj_admin_panel_button","path":"objects/obj_admin_panel_button/obj_admin_panel_button.yy",},},
+    {"id":{"name":"obj_am_back","path":"objects/obj_am_back/obj_am_back.yy",},},
+    {"id":{"name":"obj_button","path":"objects/obj_button/obj_button.yy",},},
     {"id":{"name":"obj_checkbox","path":"objects/obj_checkbox/obj_checkbox.yy",},},
     {"id":{"name":"obj_connect","path":"objects/obj_connect/obj_connect.yy",},},
     {"id":{"name":"obj_disconnect","path":"objects/obj_disconnect/obj_disconnect.yy",},},
@@ -39,10 +43,12 @@
     {"id":{"name":"obj_text_input","path":"objects/obj_text_input/obj_text_input.yy",},},
     {"id":{"name":"obj_tile","path":"objects/obj_tile/obj_tile.yy",},},
     {"id":{"name":"obj_tooltip","path":"objects/obj_tooltip/obj_tooltip.yy",},},
+    {"id":{"name":"rm_admin","path":"rooms/rm_admin/rm_admin.yy",},},
     {"id":{"name":"rm_game","path":"rooms/rm_game/rm_game.yy",},},
     {"id":{"name":"rm_login","path":"rooms/rm_login/rm_login.yy",},},
     {"id":{"name":"scr_archipelago","path":"scripts/scr_archipelago/scr_archipelago.yy",},},
     {"id":{"name":"spr_APHSlogo","path":"sprites/spr_APHSlogo/spr_APHSlogo.yy",},},
+    {"id":{"name":"spr_button","path":"sprites/spr_button/spr_button.yy",},},
     {"id":{"name":"spr_checkbox","path":"sprites/spr_checkbox/spr_checkbox.yy",},},
     {"id":{"name":"spr_connect","path":"sprites/spr_connect/spr_connect.yy",},},
     {"id":{"name":"spr_disconnect","path":"sprites/spr_disconnect/spr_disconnect.yy",},},
@@ -60,6 +66,7 @@
   "RoomOrderNodes":[
     {"roomId":{"name":"rm_login","path":"rooms/rm_login/rm_login.yy",},},
     {"roomId":{"name":"rm_game","path":"rooms/rm_game/rm_game.yy",},},
+    {"roomId":{"name":"rm_admin","path":"rooms/rm_admin/rm_admin.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

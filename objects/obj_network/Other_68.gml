@@ -49,6 +49,8 @@ for (var i = 0; i < array_length(data); ++i) {
 				case "admin_settings_exist":
 					if (data[i].keys.APHintSweeper_settings == undefined) {
 						admin_settings_exist = false;
+						layer_set_visible("first_time_setup_notice",true);
+						instance_create_layer(704,295,"instances",obj_admin_panel_button);
 					} else {
 						admin_settings_exist = true;
 					}
