@@ -1,6 +1,5 @@
-if (keyboard_check_pressed(vk_enter) && active) {
-	active = false;
-}
+// Inherit the parent event
+event_inherited();
 
 if (keyboard_check(vk_anykey) && active) {
 	text = keyboard_string;
@@ -20,32 +19,5 @@ if (keyboard_check_direct(vk_control) && active) {
 	if (keyboard_check_pressed(vk_backspace)) {
 		text = "";
 		keyboard_string = text;
-	}
-}
-
-if (keyboard_check_direct(vk_shift) && (active)) {
-	if (keyboard_check_pressed(vk_tab)) {
-		global.current_tab = tab_from;
-		show_debug_message(global.current_tab);
-		with (obj_text_input) {
-			active = false;
-			if (box_id == global.current_tab) {
-				keyboard_clear(vk_tab);
-				active = true;
-				keyboard_string = text;
-			}
-		}
-	}
-}
-
-if (keyboard_check_pressed(vk_tab) && (active)) {
-	global.current_tab = tab_to;
-	with (obj_text_input) {
-		active = false;
-		if (box_id == global.current_tab) {
-			keyboard_clear(vk_tab);
-			active = true;
-			keyboard_string = text;
-		}
 	}
 }

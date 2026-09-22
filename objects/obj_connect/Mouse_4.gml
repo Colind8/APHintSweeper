@@ -1,4 +1,4 @@
 if (instance_exists(obj_network)) {
 	return;
 }
-image_index = 1;
+image_index = 2;

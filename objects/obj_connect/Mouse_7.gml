@@ -13,9 +13,11 @@ connection_message = "Connecting...";
 
 image_index = 0;
 
-with (obj_text_input) {
-	if (text == "" && box_id < 2) {
-		text = sample_text;
+with (obj_input_parent) {
+	if (box_id < 2) {
+		if (text == "" ) {
+			text = sample_text;
+		}
 	}
 	
 	if (box_id == 0) {
@@ -29,6 +31,9 @@ with (obj_text_input) {
 	}
 	if (box_id == 3) {
 		global.password = text;
+	}
+	if (box_id == 4) {
+		global.deathlink = checked;
 	}
 }
 

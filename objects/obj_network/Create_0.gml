@@ -5,6 +5,7 @@ global.team_id = 0;
 global.secure = false
 
 admin_settings_exist = false;
+info_context = ""; // The context of a Get
 
 if global.server = "archipelago.gg" {
 		global.secure = true
@@ -28,6 +29,10 @@ if global.secure = false && global.socket != network_create_socket(ws) {
 playerSent = 0
 
 item = 0
+var tag_array = ["HintGame"];
+if (global.deathlink) {
+	array_push(tag_array,"DeathLink");
+}
 
 //JSON file contents
 var _contents = {
@@ -37,7 +42,7 @@ var _contents = {
 		name: global.name,
 		uuid: int64(999999),
 		items_handling: int64(0),
-		tags: ["HintGame","DeathLink"],
+		tags: tag_array,
 		version : {
 			build : int64(0),
 			class: "Version",

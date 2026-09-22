@@ -1,3 +1,8 @@
 if (!collision_point(mouse_x,mouse_y,self,true,false)) {
-	image_index = 0;
+	if (instance_exists(obj_network)) {
+		image_index = 1;
+	} else {
+		image_index = 0;
+	}
+	
 }

@@ -1,6 +1,6 @@
 {
   "$GMFont":"",
-  "%Name":"fnt_large",
+  "%Name":"fnt_small",
   "AntiAlias":0,
   "applyKerning":0,
   "ascender":11,
@@ -123,10 +123,10 @@
   "last":0,
   "lineHeight":15,
   "maintainGms1Font":false,
-  "name":"fnt_large",
+  "name":"fnt_small",
   "parent":{
-    "name":"APMinesweeper",
-    "path":"APMinesweeper.yyp",
+    "name":"Inputs",
+    "path":"folders/Inputs.yy",
   },
   "pointRounding":0,
   "ranges":[

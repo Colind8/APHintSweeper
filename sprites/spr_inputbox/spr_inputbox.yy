@@ -45,8 +45,8 @@
   },
   "origin":0,
   "parent":{
-    "name":"APMinesweeper",
-    "path":"APMinesweeper.yyp",
+    "name":"Inputs",
+    "path":"folders/Inputs.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -2129,8 +2129,8 @@
   "maintainGms1Font":false,
   "name":"fnt_larger",
   "parent":{
-    "name":"APMinesweeper",
-    "path":"APMinesweeper.yyp",
+    "name":"Inputs",
+    "path":"folders/Inputs.yy",
   },
   "pointRounding":0,
   "ranges":[

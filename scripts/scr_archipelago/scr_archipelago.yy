@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_archipelago",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_archipelago",
+  "parent":{
+    "name":"APMinesweeper",
+    "path":"APMinesweeper.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

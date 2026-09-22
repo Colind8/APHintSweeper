@@ -24,35 +24,38 @@ for (var i = 0; i < array_length(data); ++i) {
 	if struct_exists(data[i], "cmd") {
 		//show_debug_message(data[i].cmd)
 		
-		//Checks to see if the command part of the json is equal to the received items list, lists them out and throws them into a struct, allowing you to call them into update_obtains()
-		/*if (data[i].cmd = "ReceivedItems") {
-			if struct_exists(data[i], "items") {
-			for (var ii = 0; ii < array_length(data[i].items); ++ii) {
-					//show_debug_message(data[i].items[ii])
-					//Variable used for get_name(), if you want you can change it.
-					playerSent = data[i].items[ii].player
-					//show_debug_message(playerSent)
-					if (playerSent >= 0) {
-						update_obtains(data[i].items[ii].item, playerSent)
-					}			
-				}
-			}
-		}*/
-		if (data[i].cmd = "Connected") {
+		if (data[i].cmd == "Connected") {
 			show_debug_message(data[i]);
 			obj_connect.connection_color = c_green;
 			obj_connect.connection_message = "Connected!"
+			obj_connect.image_index = 1;
+			obj_disconnect.image_index = 0;
 			global.slot_id = data[i].slot;
 			global.team_id = data[i].team;
 			show_debug_message($"\nTeam: {string(global.team_id)}\nSlot: {string(global.slot_id)}");
+			
+			info_context = "admin_settings_exist";
+			send_command({
+				cmd: "Get",
+				keys: ["APHintSweeper_settings"]
+			});
 		}
-		if (data[i].cmd = "DataPackage") {
+		if (data[i].cmd == "DataPackage") {
 			show_debug_message(data[i]);
 		}
-		if (data[i].cmd = "Retrieved") {
+		if (data[i].cmd == "Retrieved") {
 			show_debug_message(data[i]);
+			switch (info_context) {
+				case "admin_settings_exist":
+					if (data[i].keys.APHintSweeper_settings == undefined) {
+						admin_settings_exist = false;
+					} else {
+						admin_settings_exist = true;
+					}
+					break;
+			}
 		}
-		if (data[i].cmd = "ConnectionRefused") {
+		if (data[i].cmd == "ConnectionRefused") {
 			show_debug_message(data[i]);
 			obj_connect.connection_color = c_red;
 			if (data[i].errors[0] == "InvalidSlot") {

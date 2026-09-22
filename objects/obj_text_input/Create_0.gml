@@ -1,4 +1,10 @@
-active = false;
+// Inherit the parent event
+event_inherited();
+
 text = "";
-show_debug_message(image_yscale);
-show_debug_message(sprite_height);
+function on_active() {
+	keyboard_string = text;
+}
+function on_inactive() {
+	
+}
