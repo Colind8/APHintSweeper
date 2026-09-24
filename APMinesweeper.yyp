@@ -10,8 +10,8 @@
   },
   "defaultScriptType":1,
   "Folders":[
-    {"$GMFolder":"","%Name":"Game","folderPath":"folders/Game.yy","name":"Game","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Admin Panel","folderPath":"folders/Admin Panel.yy","name":"Admin Panel","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Game","folderPath":"folders/Game.yy","name":"Game","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Inputs","folderPath":"folders/Inputs.yy","name":"Inputs","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Login Page","folderPath":"folders/Login Page.yy","name":"Login Page","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
@@ -31,6 +31,7 @@
     {"id":{"name":"fnt_small","path":"fonts/fnt_small/fnt_small.yy",},},
     {"id":{"name":"obj_admin_panel_button","path":"objects/obj_admin_panel_button/obj_admin_panel_button.yy",},},
     {"id":{"name":"obj_am_back","path":"objects/obj_am_back/obj_am_back.yy",},},
+    {"id":{"name":"obj_am_login","path":"objects/obj_am_login/obj_am_login.yy",},},
     {"id":{"name":"obj_button","path":"objects/obj_button/obj_button.yy",},},
     {"id":{"name":"obj_checkbox","path":"objects/obj_checkbox/obj_checkbox.yy",},},
     {"id":{"name":"obj_connect","path":"objects/obj_connect/obj_connect.yy",},},

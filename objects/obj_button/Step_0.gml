@@ -15,3 +15,8 @@ if(mouse_over) {
 	}
 }
 
+if (mouse_over) {
+	if (mouse_check_button_released(mb_left)) {
+		on_click();
+	}
+}

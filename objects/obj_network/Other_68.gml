@@ -3,7 +3,7 @@
 //Loads the buffers and lists them out into a variable (Probably not useful for the most part, just there at this point for assurance.)
 var type = async_load[? "type"];
 
-show_debug_message(type);
+//show_debug_message(type);
 
 if (type == network_type_up_failed) {
 	show_debug_message("Connection failure");
@@ -69,6 +69,37 @@ for (var i = 0; i < array_length(data); ++i) {
 			
 			network_destroy(global.socket);
 			instance_destroy();
+		}
+		if (data[i].cmd == "PrintJSON") {
+			//show_debug_message(data[i]);
+			if (struct_exists(data[i],"type")) {
+				//show_debug_message("type exists");
+				if (data[i].type == "CommandResult") {
+					//show_debug_message("type is CommandResult");
+					if (data[i].data[0].text == "Login successful. You can now issue server side commands.") {
+						if (!instance_exists(obj_am_login)) {
+							return;
+						}
+						obj_am_login.login_message = "Logged in!"
+						obj_am_login.message_color = c_green;
+						obj_am_login.admin_loggedin = true;
+					} else if (data[i].data[0].text == "Logout successful. You can no longer issue server side commands."){
+						if (!instance_exists(obj_am_login)) {
+							return;
+						}
+						obj_am_login.login_message = "Logged out."
+						obj_am_login.message_color = c_black;
+						obj_am_login.admin_loggedin = false;
+					} else {
+						if (!instance_exists(obj_am_login)) {
+							return;
+						}
+						obj_am_login.login_message = "Incorrect password!"
+						obj_am_login.message_color = c_red;
+						obj_am_login.admin_loggedin = false;
+					}
+				}
+			}  
 		}
 	}
 }
