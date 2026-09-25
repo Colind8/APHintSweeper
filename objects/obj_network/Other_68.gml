@@ -53,6 +53,7 @@ for (var i = 0; i < array_length(data); ++i) {
 						instance_create_layer(704,295,"instances",obj_admin_panel_button);
 					} else {
 						admin_settings_exist = true;
+						admin_settings = data[i].keys.APHintSweeper_settings;
 					}
 					break;
 			}
@@ -71,11 +72,8 @@ for (var i = 0; i < array_length(data); ++i) {
 			instance_destroy();
 		}
 		if (data[i].cmd == "PrintJSON") {
-			//show_debug_message(data[i]);
 			if (struct_exists(data[i],"type")) {
-				//show_debug_message("type exists");
 				if (data[i].type == "CommandResult") {
-					//show_debug_message("type is CommandResult");
 					if (data[i].data[0].text == "Login successful. You can now issue server side commands.") {
 						if (!instance_exists(obj_am_login)) {
 							return;
@@ -83,6 +81,15 @@ for (var i = 0; i < array_length(data); ++i) {
 						obj_am_login.login_message = "Logged in!"
 						obj_am_login.message_color = c_green;
 						obj_am_login.admin_loggedin = true;
+						if (admin_settings_exist) {
+							obj_am_login.temp_admin_settings = {
+								ver: 1,
+								item_hints: false,
+								difficulties: []
+							}
+						} else {
+							obj_am_login.temp_admin_settings = admin_settings;
+						}
 					} else if (data[i].data[0].text == "Logout successful. You can no longer issue server side commands."){
 						if (!instance_exists(obj_am_login)) {
 							return;
@@ -90,11 +97,25 @@ for (var i = 0; i < array_length(data); ++i) {
 						obj_am_login.login_message = "Logged out."
 						obj_am_login.message_color = c_black;
 						obj_am_login.admin_loggedin = false;
+					} else if (data[i].data[0].text == "Password incorrect.") {
+						if (!instance_exists(obj_am_login)) {
+							return;
+						}
+						obj_am_login.login_message = "ERROR: Incorrect password!"
+						obj_am_login.message_color = c_red;
+						obj_am_login.admin_loggedin = false;
+					} else if (data[i].data[0].text == "Sorry, Remote administration is disabled") {
+						if (!instance_exists(obj_am_login)) {
+							return;
+						}
+						obj_am_login.login_message = "ERROR: Remote Administration is disabled!"
+						obj_am_login.message_color = c_red;
+						obj_am_login.admin_loggedin = false;
 					} else {
 						if (!instance_exists(obj_am_login)) {
 							return;
 						}
-						obj_am_login.login_message = "Incorrect password!"
+						obj_am_login.login_message = "ERROR: Unknown!"
 						obj_am_login.message_color = c_red;
 						obj_am_login.admin_loggedin = false;
 					}

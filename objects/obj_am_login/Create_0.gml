@@ -4,7 +4,7 @@ event_inherited();
 login_info = "";
 admin_loggedin = false;
 message_color = c_black;
-login_message = "Logged out."
+login_message = "Logged out.";
 
 function on_click() {
 	if (admin_loggedin) {

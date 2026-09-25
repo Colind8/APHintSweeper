@@ -5,6 +5,7 @@ global.team_id = 0;
 global.secure = false
 
 admin_settings_exist = false;
+admin_settings = {};
 info_context = ""; // The context of a Get
 
 if global.server = "archipelago.gg" {
