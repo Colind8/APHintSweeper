@@ -15,9 +15,9 @@ APHintSweeper is a Minesweeper hint game for Archipelago created with Gamemaker.
   - reward type: location/item. Whether it awards a location hint in your game, or an item hint for your game.
   - reward random weights: Weights for each type of hint
     - Filler Weight: the chance the reward will be for a filler/trap item
-	- Useful Weight: the chance the reward will be for a useful item
-	- Progressive Weight: the chance the reward will be for a progressive item
-	- Token Weight: the chance the reward will be for a hint token (only for item reward type)
+    - Useful Weight: the chance the reward will be for a useful item
+    - Progressive Weight: the chance the reward will be for a progressive item
+    - Token Weight: the chance the reward will be for a hint token (only for item reward type)
 - Host must import spoiler.txt file to use the item reward type.
   - This will add all item-location pairings to the server's data storage.
 

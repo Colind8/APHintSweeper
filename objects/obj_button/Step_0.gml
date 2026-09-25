@@ -7,15 +7,18 @@ if (mouse_over && (tooltip_text != "")) {
 		tooltip_cooldown--;
 	}
 }
-if(mouse_over) {
+if(mouse_over && !disabled) {
 	if (mouse_check_button(mb_left)) {
 		image_index = 1;
 	} else {
 		image_index = 0;
 	}
 }
+if (disabled) {
+	image_index = 1;
+}
 
-if (mouse_over) {
+if (mouse_over && !disabled) {
 	if (mouse_check_button_released(mb_left)) {
 		on_click();
 	}

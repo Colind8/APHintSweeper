@@ -5,6 +5,11 @@ login_info = "";
 admin_loggedin = false;
 message_color = c_black;
 login_message = "Logged out.";
+temp_admin_settings = {
+	ver: 1,
+	item_hints: false,
+	difficulties: []
+}
 
 function on_click() {
 	if (admin_loggedin) {

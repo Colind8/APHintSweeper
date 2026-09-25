@@ -1,13 +1,16 @@
 // Inherit the parent event
 event_inherited();
 
+if (disabled) {
+	return;
+}
+
 if (keyboard_check(vk_anykey) && active) {
 	text = keyboard_string;
 }
 
 if ((string_length(text) > max_length) && active) {
 	text = string_delete(text,max_length,string_length(text) - max_length);
-	show_debug_message(text);
 	keyboard_string = text;
 }
 

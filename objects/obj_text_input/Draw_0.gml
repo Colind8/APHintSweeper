@@ -6,6 +6,9 @@ draw_set_valign(fa_bottom);
 var pad = 2;
 var bit_pos = string_width(text) + x + pad;
 
+if (disabled) {
+	draw_set_colour(c_gray);
+}
 draw_text(x + pad,y + ceil(sprite_height) - pad,text);
 
 if (active) {

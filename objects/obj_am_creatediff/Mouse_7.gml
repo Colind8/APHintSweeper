@@ -1,7 +1,9 @@
 image_index = 0;
 
+var length = array_length(obj_am_login.temp_admin_settings.difficulties);
+
 array_push(obj_am_login.temp_admin_settings.difficulties,{
-	index: array_length(obj_am_login.temp_admin_settings.difficulties),
+	index: length,
 	name: "Unnamed",
 	width: 9,
 	height: 9,
@@ -19,3 +21,12 @@ array_push(obj_am_login.temp_admin_settings.difficulties,{
 		hint_token: 0
 	}
 });
+instance_create_layer(
+	x,
+	y + ((length + 1) * 32), 
+	"settings", 
+	obj_am_difficultytab,
+	{
+		index: length
+	}
+);

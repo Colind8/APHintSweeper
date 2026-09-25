@@ -21,4 +21,8 @@ if (point_in_rectangle(mouse_x,mouse_y,_x,_y,_x + _spr_w, _y + _spr_h)) {
 draw_sprite_stretched(sprite_index,image_index,_x,_y,_spr_w,_spr_h);
 draw_set_colour(c_black);
 
+if (disabled) {
+	draw_set_colour(c_gray);
+}
+
 draw_text_ext(_x + (_spr_w/2), _y + _pad, text, _sep, _width - (_pad));

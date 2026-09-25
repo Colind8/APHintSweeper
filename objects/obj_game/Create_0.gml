@@ -1,5 +1,5 @@
 randomize();
-board_width = 40;
+board_width = 59;
 board_height = 30;
 total_mines = 200;
 

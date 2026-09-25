@@ -1,0 +1,1 @@
+tooltip_cooldown = 60;

@@ -81,7 +81,14 @@ for (var i = 0; i < array_length(data); ++i) {
 						obj_am_login.login_message = "Logged in!"
 						obj_am_login.message_color = c_green;
 						obj_am_login.admin_loggedin = true;
-						if (admin_settings_exist) {
+						obj_am_login.disabled = true;
+						with (obj_input_parent) {
+							if (box_id == 0) {
+								disabled = true;
+							}
+						}
+						layer_set_visible("settings",true);
+						if (!admin_settings_exist) {
 							obj_am_login.temp_admin_settings = {
 								ver: 1,
 								item_hints: false,
@@ -97,6 +104,7 @@ for (var i = 0; i < array_length(data); ++i) {
 						obj_am_login.login_message = "Logged out."
 						obj_am_login.message_color = c_black;
 						obj_am_login.admin_loggedin = false;
+						layer_set_visible("settings",false);
 					} else if (data[i].data[0].text == "Password incorrect.") {
 						if (!instance_exists(obj_am_login)) {
 							return;
