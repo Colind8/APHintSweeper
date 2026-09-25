@@ -2,14 +2,14 @@
 APHintSweeper is a Minesweeper hint game for Archipelago created with Gamemaker. Everything below is hypothetical and not representative of actual promises for the game in the future.
 
 # Project Plan
-- Inaccessible unless setup by host
-- Host exclusive settings requiring server password to access
+- ~~Inaccessible unless setup by host~~
+- ~~Host exclusive settings requiring server password to access~~
 - Host creates each "game type"
   - A game type represents the difficulty and rewards. The following are its customizable features:
-  - name: the name of the game type
-  - game width: the amount of tiles for the width
-  - game height: the amount of tiles for the height
-  - total bombs: the amount of bombs that will be in the field
+  - ~~name: the name of the game type~~
+  - ~~game width: the amount of tiles for the width~~
+  - ~~game height: the amount of tiles for the height~~
+  - ~~total bombs: the amount of bombs that will be in the field~~
   - timed: whether the game will be timed or not
   - time: if above enabled, the amount of seconds the player will have to clear the field
   - reward type: location/item. Whether it awards a location hint in your game, or an item hint for your game.
