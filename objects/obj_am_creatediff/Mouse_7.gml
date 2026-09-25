@@ -9,9 +9,9 @@ array_push(obj_am_login.temp_admin_settings.difficulties,{
 	height: 9,
 	mines: 10,
 	timed: false,
-	time: 0,
+	time: 120,
 	reward_weights: {
-		none: 0,
+		none: 1,
 		filler_loc: 0,
 		filler_ite: 0,
 		useful_loc: 0,

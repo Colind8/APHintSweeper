@@ -21,6 +21,9 @@ if (keyboard_check_direct(vk_control) && active) {
 	}
 }
 if (mouse_wheel_up() && active) {
+	if (text == "") {
+		text = sample_text;
+	}
 	var num = real(string_digits(text));
 	var _max = maximum;
 	if (maximum == -1) {
@@ -45,6 +48,9 @@ if (mouse_wheel_up() && active) {
 	text = string(num);
 }
 if (mouse_wheel_down() && active) {
+	if (text == "") {
+		text = sample_text;
+	}
 	var num = string_digits(text);
 	if (num > minimum) {
 		num--;
