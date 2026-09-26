@@ -10,6 +10,7 @@ temp_admin_settings = {
 	item_hints: false,
 	difficulties: []
 }
+temp_spoiler = [];
 
 function on_click() {
 	if (admin_loggedin) {

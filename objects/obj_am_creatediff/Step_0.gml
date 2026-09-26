@@ -1,3 +1,7 @@
+if (!obj_am_login.admin_loggedin) {
+	return;
+}
+
 if (collision_point(mouse_x,mouse_y,self,true,false) && (tooltip_text != "")) {
 	if (tooltip_cooldown <= 0) {
 		if (!instance_exists(obj_tooltip)) {

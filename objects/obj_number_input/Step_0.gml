@@ -1,6 +1,16 @@
 // Inherit the parent event
 event_inherited();
 
+if (require_spoiler && !obj_am_login.temp_admin_settings.item_hints) {
+	disabled = true;
+} else {
+	disabled = false;
+}
+
+if (disabled) {
+	return;
+}
+
 if (keyboard_check(vk_anykey) && active) {
 	text = keyboard_string;
 }

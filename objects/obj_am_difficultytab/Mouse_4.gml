@@ -1,3 +1,6 @@
+if (!obj_am_login.admin_loggedin) {
+	return;
+}
 obj_am_login.save_difficulty();
 active = true;
 image_index = 1;

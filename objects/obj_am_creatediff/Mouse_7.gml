@@ -1,3 +1,6 @@
+if (!obj_am_login.admin_loggedin) {
+	return;
+}
 image_index = 0;
 
 var length = array_length(obj_am_login.temp_admin_settings.difficulties);
