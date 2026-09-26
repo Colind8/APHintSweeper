@@ -28,6 +28,7 @@ for (var i = 0; i < array_length(data); ++i) {
 			show_debug_message(data[i]);
 			obj_connect.connection_color = c_green;
 			obj_connect.connection_message = "Connected!"
+			obj_input_parent.disabled = true;
 			obj_connect.image_index = 1;
 			obj_disconnect.image_index = 0;
 			global.slot_id = data[i].slot;
@@ -50,10 +51,13 @@ for (var i = 0; i < array_length(data); ++i) {
 					if (data[i].keys.APHintSweeper_settings == undefined) {
 						admin_settings_exist = false;
 						layer_set_visible("first_time_setup_notice",true);
-						instance_create_layer(704,295,"instances",obj_admin_panel_button);
+						layer_set_visible("first_time",true);
 					} else {
 						admin_settings_exist = true;
 						admin_settings = data[i].keys.APHintSweeper_settings;
+						show_debug_message(admin_settings);
+						show_debug_message("Setting main_menu visible");
+						layer_set_visible("main_menu",true);
 					}
 					break;
 			}
@@ -99,6 +103,7 @@ for (var i = 0; i < array_length(data); ++i) {
 							if (obj_am_login.temp_admin_settings.item_hints) {
 								instance_destroy(obj_am_import_spoiler);
 							}
+							obj_am_login.load_difficulties();
 						}
 					} else if (data[i].data[0].text == "Logout successful. You can no longer issue server side commands."){
 						if (!instance_exists(obj_am_login)) {
@@ -132,6 +137,33 @@ for (var i = 0; i < array_length(data); ++i) {
 					}
 				}
 			}  
+		}
+		if (data[i].cmd == "SetReply") {
+			if (data[i].key == "APHintSweeper_settings") {
+				show_debug_message("APHintSweeper_settings set!");
+				if (array_length(obj_am_login.temp_spoiler) > 0) {
+					show_debug_message("Now setting APHintSweeper_spoiler...");
+					send_command({
+						cmd: "Set",
+						key: "APHintSweeper_spoiler",
+						want_reply: true,
+						operations: [
+							{
+								operation: "replace",
+								value: obj_am_login.temp_spoiler
+							}
+						]
+					});
+				} else {
+					send_command({cmd: "Say", text: $"!admin logout"});
+					room_goto(rm_login);
+				}
+			}
+			if (data[i].key == "APHintSweeper_spoiler") {
+				show_debug_message("APHintSweeper_spoiler set!");
+				send_command({cmd: "Say", text: $"!admin logout"});
+				room_goto(rm_login);
+			}
 		}
 	}
 }

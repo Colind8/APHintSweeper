@@ -79,4 +79,27 @@ function save_difficulty() {
 		active = false;
 		image_index = 0;
 	}
+	var w = obj_am_login.temp_admin_settings.difficulties[other.index].reward_weights;
+	if ((w.none + w.filler_loc + w.useful_loc + w.progre_loc + w.filler_ite + w.useful_ite + w.progre_ite + w.hint_token) == 0) {
+		obj_am_login.temp_admin_settings.difficulties[other.index].reward_weights.none = 1;
+	}
+}
+
+function load_difficulties() {
+	layer_set_visible("difficulty_customization",false);
+	layer_set_visible("difficulty_customization_assets",false);
+	if (instance_exists(obj_am_difficultytab)) {
+		instance_destroy(obj_am_difficultytab);
+	}
+	for (var i = 0; i < array_length(temp_admin_settings.difficulties); i++) {
+		instance_create_layer(
+			obj_am_creatediff.x,
+			obj_am_creatediff.y + ((i + 1) * 32), 
+			"settings", 
+			obj_am_difficultytab,
+			{
+				index: i
+			}
+		);
+	}
 }

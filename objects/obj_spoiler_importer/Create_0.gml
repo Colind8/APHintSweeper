@@ -76,14 +76,21 @@ while (!file_text_eof(file))
 	}
 }
 file_text_close(file);
+if (stage == 2) {
+	obj_am_login.temp_admin_settings.item_hints = true;
+	obj_am_login.temp_spoiler = pair_array;
+	show_message("Import complete!");
+} else {
+	show_message("Importer process failed.");
+	obj_am_import_spoiler.disabled = false;
+}
 
-show_debug_message(pair_array[0]);
-show_debug_message(pair_array[array_length(pair_array) - 1]);
 layer_set_visible("importer",false);
 layer_set_visible("login_screen",true);
 layer_set_visible("settings",true);
 layer_set_visible("difficulty_customization",false);
 layer_set_visible("difficulty_customization_assets",false);
 layer_set_visible("assets",true);
-obj_am_login.temp_admin_settings.item_hints = true;
-show_message("Import complete!");
+
+
+instance_destroy();

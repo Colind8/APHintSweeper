@@ -6,6 +6,7 @@ function on_active() {
 	if (text == "") {
 		text = sample_text;
 	}
+	global.current_tab = box_id;
 	text = string_digits(text);
 	keyboard_string = text;
 }
@@ -32,6 +33,9 @@ function on_inactive() {
 	num = floor(num);
 	if (num > _max) {
 		num = _max;
+	}
+	if (num < minimum) {
+		num = minimum;
 	}
 	text = string(num);
 }

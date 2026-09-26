@@ -4,6 +4,7 @@ event_inherited();
 checked = false;
 
 function on_active() {
+	global.current_tab = box_id;
 	if (checked) {
 		image_index = 3;
 	} else {

@@ -1,3 +1,7 @@
+if (!layer_get_visible(layer)) {
+	return;
+}
+
 if (mouse_over && (tooltip_text != "")) {
 	if (tooltip_cooldown <= 0) {
 		if (!instance_exists(obj_tooltip)) {
@@ -16,6 +20,8 @@ if(mouse_over && !disabled) {
 }
 if (disabled) {
 	image_index = 1;
+} else if (!mouse_over) {
+	image_index = 0;
 }
 
 if (mouse_over && !disabled) {
