@@ -96,6 +96,9 @@ for (var i = 0; i < array_length(data); ++i) {
 							}
 						} else {
 							obj_am_login.temp_admin_settings = admin_settings;
+							if (obj_am_login.temp_admin_settings.item_hints) {
+								instance_destroy(obj_am_import_spoiler);
+							}
 						}
 					} else if (data[i].data[0].text == "Logout successful. You can no longer issue server side commands."){
 						if (!instance_exists(obj_am_login)) {
