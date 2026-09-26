@@ -20,6 +20,11 @@ if (active) {
 	keyboard_string = text;
 }
 
+if ((string_length(text) > 3) && active) {
+	text = string_delete(text,3,string_length(text) - max_length);
+	keyboard_string = text;
+}
+
 if (keyboard_check_direct(vk_control) && active) {
 	if (keyboard_check_pressed(ord("V"))) {
 		text += clipboard_get_text();

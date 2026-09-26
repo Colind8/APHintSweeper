@@ -1,7 +1,6 @@
 randomize();
-board_width = 59;
-board_height = 30;
-total_mines = 200;
+
+show_debug_message("Created!")
 
 flags_to_place = total_mines;
 first_click = true;
