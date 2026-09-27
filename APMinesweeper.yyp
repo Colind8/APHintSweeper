@@ -75,6 +75,7 @@
     {"id":{"name":"spr_difficulty_box_bg","path":"sprites/spr_difficulty_box_bg/spr_difficulty_box_bg.yy",},},
     {"id":{"name":"spr_disconnect","path":"sprites/spr_disconnect/spr_disconnect.yy",},},
     {"id":{"name":"spr_face","path":"sprites/spr_face/spr_face.yy",},},
+    {"id":{"name":"spr_font95","path":"sprites/spr_font95/spr_font95.yy",},},
     {"id":{"name":"spr_gameborder_bottom","path":"sprites/spr_gameborder_bottom/spr_gameborder_bottom.yy",},},
     {"id":{"name":"spr_gameborder_top","path":"sprites/spr_gameborder_top/spr_gameborder_top.yy",},},
     {"id":{"name":"spr_help","path":"sprites/spr_help/spr_help.yy",},},

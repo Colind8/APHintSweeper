@@ -1,6 +1,6 @@
 var _x = x;
 var _y = y;
-draw_set_font(fnt_large);
+draw_set_font(global.font);
 draw_set_halign(fa_center);
 draw_set_valign(fa_top);
 var _width = 114;
