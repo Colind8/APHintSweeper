@@ -1,6 +1,7 @@
 ///@description Network connection data
 global.slot_id = -1;
 global.team_id = 0;
+global.hint_tokens = 0;
 
 global.secure = false
 

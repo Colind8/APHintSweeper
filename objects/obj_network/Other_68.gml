@@ -33,6 +33,7 @@ for (var i = 0; i < array_length(data); ++i) {
 			obj_disconnect.image_index = 0;
 			global.slot_id = data[i].slot;
 			global.team_id = data[i].team;
+			global.game_name = struct_get(data[i].slot_info,$"{global.slot_id}").game;
 			show_debug_message($"\nTeam: {string(global.team_id)}\nSlot: {string(global.slot_id)}");
 			
 			info_context = "admin_settings_exist";
@@ -42,11 +43,16 @@ for (var i = 0; i < array_length(data); ++i) {
 			});
 		}
 		if (data[i].cmd == "DataPackage") {
-			show_debug_message(data[i]);
+			switch (info_context) {
+				case "custom_location":
+					obj_custom_hint.find_location_from_name(data[i].data.games);
+					break;
+			}
 		}
 		if (data[i].cmd == "Retrieved") {
 			show_debug_message(data[i]);
-			switch (info_context) {
+			var info_context_arr = string_split(info_context,":/:");
+			switch (info_context_arr[0]) {
 				case "admin_settings_exist":
 					if (data[i].keys.APHintSweeper_settings == undefined) {
 						admin_settings_exist = false;
@@ -60,6 +66,9 @@ for (var i = 0; i < array_length(data); ++i) {
 						layer_set_visible("main_menu",true);
 					}
 					break;
+				case "checking_hint_exists":
+					var st_na = struct_get_names(data[i].keys)
+					obj_custom_hint.hint_exists(struct_get(data[i].keys,st_na[0]),info_context_arr[1]);
 			}
 		}
 		if (data[i].cmd == "ConnectionRefused") {

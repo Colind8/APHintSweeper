@@ -2,5 +2,5 @@
 event_inherited();
 
 function on_click() {
-	//room_goto(rm_admin);
+	room_goto(rm_hint_token);
 }

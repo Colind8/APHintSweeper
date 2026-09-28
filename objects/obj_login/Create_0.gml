@@ -8,6 +8,7 @@ if (!instance_exists(obj_network)) {
 	
 	global.slot_id = -1;
 	global.team_id = 0;
+	global.game_name = "";
 	
 	global.secure = false
 	global.current_tab = -1;
