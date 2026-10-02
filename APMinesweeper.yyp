@@ -90,6 +90,7 @@
     {"id":{"name":"spr_gameborder_top","path":"sprites/spr_gameborder_top/spr_gameborder_top.yy",},},
     {"id":{"name":"spr_help","path":"sprites/spr_help/spr_help.yy",},},
     {"id":{"name":"spr_inputbox","path":"sprites/spr_inputbox/spr_inputbox.yy",},},
+    {"id":{"name":"spr_no","path":"sprites/spr_no/spr_no.yy",},},
     {"id":{"name":"spr_notif_hint_frame","path":"sprites/spr_notif_hint_frame/spr_notif_hint_frame.yy",},},
     {"id":{"name":"spr_segmentdisplay","path":"sprites/spr_segmentdisplay/spr_segmentdisplay.yy",},},
     {"id":{"name":"spr_tile_filled","path":"sprites/spr_tile_filled/spr_tile_filled.yy",},},
