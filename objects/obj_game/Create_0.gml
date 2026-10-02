@@ -138,11 +138,13 @@ function check() {
 		}
 	}
 	if (correct_mines == total_mines) {
-		show_debug_message("You win!");
-		flags_to_place = 0;
-		game_stopped = true;
-		obj_face.image_index = 4;
-		instance_create_layer(0,0,"instances",obj_hint);
+		if (!game_stopped) {
+			show_debug_message("You win!");
+			flags_to_place = 0;
+			game_stopped = true;
+			obj_face.image_index = 4;
+			instance_create_layer(0,0,"instances",obj_hint);
+		}
 	} else {
 		show_debug_message($"Game not yet won. {correct_mines} vs {total_mines}");
 	}

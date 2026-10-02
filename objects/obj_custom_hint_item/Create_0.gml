@@ -4,6 +4,10 @@ games_array = [];  // list of all games
 game_index = 0; //
 package = {};
 
+layer_set_visible("item_hint",false);
+layer_set_visible("default",false);
+layer_set_visible("hint_processing",true);
+
 obj_network.info_context = "custom_item";
 
 send_command({
@@ -12,36 +16,6 @@ send_command({
 		"APHintSweeper_spoiler"
 	]
 });
-
-
-
-function hint_exists(data,loc_id) {
-	var exists = false;
-	for (var i = 0; i < array_length(data); i++) {
-		if (data[i].location == loc_id) {
-			exists = true;
-			break;
-		}
-	}
-	
-	show_debug_message(exists);
-	
-	if (exists) {
-		instance_create_layer(0,0,"notifications",obj_hint_notification,{title: "Error", desc: "You already have that hint!"});
-	} else if (loc_id == "undefined") {
-		instance_create_layer(0,0,"notifications",obj_hint_notification,{title: "Error", desc: "Location not found!"});
-	} else {
-		if (type == 0) {
-			send_command({
-				cmd: "CreateHints",
-				locations: [int64(loc_id)],
-			});
-		}
-		global.hint_tokens--;
-		instance_create_layer(0,0,"notifications",obj_hint_notification,{title: "Hint Created!", desc: "View your Hint in the Hints tab!"});
-	}
-	instance_destroy();
-}
 
 /// @desc Gets the location names of all items matching the name
 /// @param {array} data Spoiler Array
@@ -64,6 +38,9 @@ function find_item_by_name(data) {
 	}
 	if (array_length(item_collection) == 0) {
 		instance_create_layer(0,0,"notifications",obj_hint_notification,{title: "Error", desc: "Item not found!"});
+		layer_set_visible("item_hint",true);
+		layer_set_visible("default",true);
+		layer_set_visible("hint_processing",false);
 		instance_destroy();
 		return;
 	}
@@ -222,5 +199,8 @@ function find_item_3(_hints) {
 		global.hint_tokens--;
 		instance_create_layer(0,0,"notifications",obj_hint_notification,{title: "Hint Created!", desc: "View your Hint in the Hints tab!"});
 	}
+	layer_set_visible("item_hint",true);
+	layer_set_visible("default",true);
+	layer_set_visible("hint_processing",false);
 	instance_destroy();
 }
