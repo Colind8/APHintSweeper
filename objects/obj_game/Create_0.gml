@@ -372,10 +372,28 @@ function first_click_set(_x,_y) {
 	write_numbers();
 }
 
-function game_over(_x,_y) {
-	show_debug_message("GAME OVER!!!!")
+function game_over(_x,_y,from_deathlink = false) {
+	show_debug_message("GAME OVER!!!!");
+	game_stopped = true;
 	var inst = 0;
 	obj_face.image_index = 3;
+	if (from_deathlink == false) {
+		if (global.deathlink) {
+			var date1 = date_create_datetime(1970,1,1,0,0,0);
+			var date2 = date_current_datetime();
+			var unix_time = floor(real(date_second_span(date1,date2)));
+			send_command({
+				cmd: "Bounce",
+				tags: ["DeathLink"],
+				data: {
+					time: unix_time,
+					cause: $"{global.name} stepped on a landmine!",
+					source: global.name
+				}
+			});
+		}
+	}
+	
 	for (var i = 0; i < board_height; i++) {
 		for (var j = 0; j < board_width; j++) {
 			show_debug_message($"{j},{i}: {board[i][j]} -- {flag_board[i][j]} -- {(i == _y) && (j == _x)}")

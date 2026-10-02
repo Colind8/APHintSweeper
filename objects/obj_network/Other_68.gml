@@ -186,6 +186,25 @@ for (var i = 0; i < array_length(data); ++i) {
 				room_goto(rm_login);
 			}
 		}
+		if (data[i].cmd == "Bounced") {
+			if (struct_exists(data[i],"tags")) {
+				if (array_contains(data[i].tags,"DeathLink")) {
+					if (instance_exists(obj_game)) {
+						var dldesc = $"{data[i].data.source} has died and triggered DeathLink!";
+						
+						if (struct_exists(data[i].data,"cause")) {
+							dldesc = data[i].data.cause;
+						}
+						
+						instance_create_layer(0,0,"notifications",obj_hint_notification,{
+							title: "Death Link!",
+							desc: dldesc
+						});
+						obj_game.game_over(-1,-1, true);
+					}
+				}
+			}
+		}
 	}
 }
 
