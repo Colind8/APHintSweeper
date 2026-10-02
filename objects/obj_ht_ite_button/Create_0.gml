@@ -9,7 +9,7 @@ function on_click() {
 	
 	with (obj_input_parent) {
 		if (box_id == 1) {
-			instance_create_layer(0,0,"default",obj_custom_hint,{type:1,name: text});
+			instance_create_layer(0,0,"default",obj_custom_hint_item,{name: text});
 		}
 	}
 };

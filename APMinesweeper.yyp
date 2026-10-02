@@ -44,6 +44,7 @@
     {"id":{"name":"obj_checkbox","path":"objects/obj_checkbox/obj_checkbox.yy",},},
     {"id":{"name":"obj_connect","path":"objects/obj_connect/obj_connect.yy",},},
     {"id":{"name":"obj_console_button","path":"objects/obj_console_button/obj_console_button.yy",},},
+    {"id":{"name":"obj_custom_hint_item","path":"objects/obj_custom_hint_item/obj_custom_hint_item.yy",},},
     {"id":{"name":"obj_custom_hint","path":"objects/obj_custom_hint/obj_custom_hint.yy",},},
     {"id":{"name":"obj_disconnect","path":"objects/obj_disconnect/obj_disconnect.yy",},},
     {"id":{"name":"obj_face","path":"objects/obj_face/obj_face.yy",},},
