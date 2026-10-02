@@ -17,7 +17,7 @@ if (!instance_exists(obj_network)) {
 		
 	} else {
 		layer_set_visible("first_time_setup_notice",true);
-		instance_create_layer(704,295,"instances",obj_admin_panel_button);
+		layer_set_visible("first_time",true);
 	}
 }
 

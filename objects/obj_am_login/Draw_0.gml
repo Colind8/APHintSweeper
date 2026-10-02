@@ -29,5 +29,6 @@ if (disabled) {
 draw_text_ext(_x + (_spr_w/2), _y + _pad, text, _sep, _width - (_pad));
 
 draw_set_halign(fa_left);
+draw_set_font(fnt_large);
 draw_set_colour(message_color);
 draw_text(_spr_w + _x + _mar, _y,login_message);
