@@ -33,6 +33,7 @@ for (var i = 0; i < array_length(data); ++i) {
 			obj_disconnect.image_index = 0;
 			global.slot_id = data[i].slot;
 			global.team_id = data[i].team;
+			global.connection_info = data[i];
 			global.game_name = struct_get(data[i].slot_info,$"{global.slot_id}").game;
 			show_debug_message($"\nTeam: {string(global.team_id)}\nSlot: {string(global.slot_id)}");
 			
@@ -47,9 +48,13 @@ for (var i = 0; i < array_length(data); ++i) {
 				case "custom_location":
 					obj_custom_hint.find_location_from_name(data[i].data.games);
 					break;
+				case "custom_item":
+					obj_custom_hint.find_item_by_name_2(data[i].data.games);
+					break;
 			}
 		}
 		if (data[i].cmd == "Retrieved") {
+			show_debug_message("lmao");
 			show_debug_message(data[i]);
 			var info_context_arr = string_split(info_context,":/:");
 			switch (info_context_arr[0]) {
@@ -69,6 +74,11 @@ for (var i = 0; i < array_length(data); ++i) {
 				case "checking_hint_exists":
 					var st_na = struct_get_names(data[i].keys)
 					obj_custom_hint.hint_exists(struct_get(data[i].keys,st_na[0]),info_context_arr[1]);
+					break;
+				case "custom_item":
+					show_debug_message("custom item");
+					obj_custom_hint.find_item_by_name(data[i].keys.APHintSweeper_spoiler);
+					break;
 			}
 		}
 		if (data[i].cmd == "ConnectionRefused") {
