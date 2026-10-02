@@ -123,6 +123,23 @@ for (var i = 0; i < board_height; i++) {
 	}
 }
 
+time_up = function() {
+	instance_create_layer(0,0,"notifications",obj_hint_notification,{
+		title: "Time up!",
+		desc: "You ran out of time."
+	});
+	game_over(-1,-1);
+}
+
+time_source = 0;
+
+if (time != -1) {
+	time_source = time_source_create(time_source_global,time,time_source_units_seconds,time_up);
+	time_source_start(time_source);
+}
+
+
+
 function check() {
 	var correct_mines = 0;
 	flags_to_place = total_mines;
@@ -144,6 +161,9 @@ function check() {
 			game_stopped = true;
 			obj_face.image_index = 4;
 			instance_create_layer(0,0,"instances",obj_hint);
+			if (time != -1) {
+				time_source_pause(time_source);
+			}
 		}
 	} else {
 		show_debug_message($"Game not yet won. {correct_mines} vs {total_mines}");
@@ -374,6 +394,9 @@ function first_click_set(_x,_y) {
 
 function game_over(_x,_y,from_deathlink = false) {
 	show_debug_message("GAME OVER!!!!");
+	if (time != -1) {
+		time_source_pause(time_source);
+	}
 	game_stopped = true;
 	var inst = 0;
 	obj_face.image_index = 3;
