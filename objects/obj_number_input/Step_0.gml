@@ -21,7 +21,7 @@ if (active) {
 }
 
 if ((string_length(text) > 3) && active) {
-	text = string_delete(text,3,string_length(text) - max_length);
+	text = string_delete(text,3,string_length(text) - 3);
 	keyboard_string = text;
 }
 
