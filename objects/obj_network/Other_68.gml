@@ -177,12 +177,14 @@ for (var i = 0; i < array_length(data); ++i) {
 					});
 				} else {
 					send_command({cmd: "Say", text: $"!admin logout"});
+					admin_settings = obj_am_login.temp_admin_settings;
 					room_goto(rm_login);
 				}
 			}
 			if (data[i].key == "APHintSweeper_spoiler") {
 				show_debug_message("APHintSweeper_spoiler set!");
 				send_command({cmd: "Say", text: $"!admin logout"});
+				admin_settings = obj_am_login.temp_admin_settings;
 				room_goto(rm_login);
 			}
 		}
