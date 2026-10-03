@@ -5,24 +5,12 @@ layer_set_visible("item_hint",false);
 layer_set_visible("default",false);
 layer_set_visible("hint_processing",true);
 
+obj_network.info_context = "custom_location";
 
-if (type == 0) {
-	obj_network.info_context = "custom_location";
-
-	send_command({
-		cmd: "GetDataPackage",
-		games: [global.game_name]
-	});
-} else if (type == 1) {
-	obj_network.info_context = "custom_item";
-
-	send_command({
-		cmd: "Get",
-		keys: [
-			"APHintSweeper_spoiler"
-		]
-	});
-}
+send_command({
+	cmd: "GetDataPackage",
+	games: [global.game_name]
+});
 
 
 function find_location_from_name(data) {

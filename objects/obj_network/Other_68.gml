@@ -120,9 +120,9 @@ for (var i = 0; i < array_length(data); ++i) {
 								difficulties: []
 							}
 						} else {
-							obj_am_login.temp_admin_settings = admin_settings;
+							obj_am_login.temp_admin_settings = variable_clone(admin_settings)
 							if (obj_am_login.temp_admin_settings.item_hints) {
-								instance_destroy(obj_am_import_spoiler);
+								obj_am_import_spoiler.text = "Reimport Spoiler.txt"
 							}
 							obj_am_login.load_difficulties();
 						}

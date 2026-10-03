@@ -32,45 +32,85 @@ function save_difficulty() {
 			with (obj_input_parent) {
 				switch (box_id) {
 					case 1:
+						if (text == "") {
+							text = sample_text;
+						}
 						obj_am_login.temp_admin_settings.difficulties[other.index].name = text;
 						break;
 					case 2:
+						if (text == "") {
+							text = sample_text;
+						}
 						obj_am_login.temp_admin_settings.difficulties[other.index].width = int64(text);
 						break;
 					case 3:
+						if (text == "") {
+							text = sample_text;
+						}
 						obj_am_login.temp_admin_settings.difficulties[other.index].height = int64(text);
 						break;
 					case 4: 
+						if (text == "") {
+							text = sample_text;
+						}
 						obj_am_login.temp_admin_settings.difficulties[other.index].mines = int64(text);
 						break;
 					case 5:
+						
 						obj_am_login.temp_admin_settings.difficulties[other.index].timed = bool(checked);
 						break;
 					case 6:
+						if (text == "") {
+							text = sample_text;
+						}
 						obj_am_login.temp_admin_settings.difficulties[other.index].time = int64(text);
 						break;
 					case 7:
+						if (text == "") {
+							text = sample_text;
+						}
 						obj_am_login.temp_admin_settings.difficulties[other.index].reward_weights.none = int64(text);
 						break;
 					case 8:
+						if (text == "") {
+							text = sample_text;
+						}
 						obj_am_login.temp_admin_settings.difficulties[other.index].reward_weights.filler_loc = int64(text);
 						break;
 					case 9:
+						if (text == "") {
+							text = sample_text;
+						}
 						obj_am_login.temp_admin_settings.difficulties[other.index].reward_weights.useful_loc = int64(text);
 						break;
 					case 10:
+						if (text == "") {
+							text = sample_text;
+						}
 						obj_am_login.temp_admin_settings.difficulties[other.index].reward_weights.progre_loc = int64(text);
 						break;
 					case 11:
+						if (text == "") {
+							text = sample_text;
+						}
 						obj_am_login.temp_admin_settings.difficulties[other.index].reward_weights.filler_ite = int64(text);
 						break;
 					case 12:
+						if (text == "") {
+							text = sample_text;
+						}
 						obj_am_login.temp_admin_settings.difficulties[other.index].reward_weights.useful_ite = int64(text);
 						break;
 					case 13:
+						if (text == "") {
+							text = sample_text;
+						}
 						obj_am_login.temp_admin_settings.difficulties[other.index].reward_weights.progre_ite = int64(text);
 						break;
 					case 14:
+						if (text == "") {
+							text = sample_text;
+						}
 						obj_am_login.temp_admin_settings.difficulties[other.index].reward_weights.hint_token = int64(text);
 						break;
 				}

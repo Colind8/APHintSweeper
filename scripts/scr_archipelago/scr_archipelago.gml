@@ -1,3 +1,5 @@
+/// @desc Sends 
+/// @param {struct} _contents Description
 function send_command(_contents) {
 	var arr = [_contents]
 	if (struct_exists(_contents,"locations")) {
@@ -15,6 +17,9 @@ function send_command(_contents) {
 	network_send_raw(global.socket, buffer, buffer_tell(buffer),network_send_text)
 }
 
+/// @desc Creates a Hint using the location ID and player ID
+/// @param {any} location Location ID
+/// @param {any} player Player ID
 function send_hint(location, player) {
 	var str = "[{\"player\":";
 	str += string(player);

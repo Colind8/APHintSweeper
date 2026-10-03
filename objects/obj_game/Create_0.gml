@@ -160,7 +160,7 @@ function check() {
 			flags_to_place = 0;
 			game_stopped = true;
 			obj_face.image_index = 4;
-			instance_create_layer(0,0,"instances",obj_hint);
+			instance_create_layer(0,0,"instances",obj_hint,{index: index});
 			if (time != -1) {
 				time_source_pause(time_source);
 			}

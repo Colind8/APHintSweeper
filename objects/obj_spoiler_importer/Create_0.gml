@@ -28,33 +28,46 @@ while (!file_text_eof(file))
 		case 1:
 			line = file_text_readln(file);
 			
-			// This will break if an item, player, or location has ( or ) in their names. Should probably use regex instead or something.
+			// This will break if an item, player, or location has "): " in their names.
 			if (string_length(string_trim(line)) > 0) {
 				var line_index = 1;
+				var end_location_index = -1;
 				var location_str = "";
-				while (string_char_at(line,line_index) != "(") {
-					location_str += string_char_at(line,line_index);
-					line_index++;
-				}
-				location_str = string_delete(location_str, string_length(location_str), 1);
-				line_index++;
-				var location_player_str = "";
-				while (string_char_at(line,line_index) != ")") {
-					location_player_str += string_char_at(line,line_index);
-					line_index++;
-				}
-				line_index+= 3;
 				var item_str = "";
-				while (string_char_at(line,line_index) != "(") {
-					item_str += string_char_at(line,line_index);
+				var item_player_str = "";
+				var location_player_str = "";
+				
+				var end_location_bool = (string_char_at(line,line_index) == ")") && (string_char_at(line,line_index + 1) == ":") && (string_char_at(line,line_index + 2) == " ");
+				var end_item_bool = (string_char_at(line,line_index - 2) == ")") && (string_char_at(line,line_index - 1) == ":") && (string_char_at(line,line_index) == " ");
+				
+
+				while(!end_location_bool) {
+					end_location_bool = (string_char_at(line,line_index) == ")") && (string_char_at(line,line_index + 1) == ":") && (string_char_at(line,line_index + 2) == " ");
+
 					line_index++;
 				}
-				item_str = string_delete(item_str, string_length(item_str), 1);
-				line_index++;
-				var item_player_str = "";
-				while (string_char_at(line,line_index) != ")") {
-					item_player_str += string_char_at(line,line_index);
-					line_index++;
+				line_index -= 2;
+				while (string_char_at(line,line_index) != "(") {
+					location_player_str = string_char_at(line,line_index) + location_player_str;
+					line_index--;
+				}
+				line_index -= 2;
+				
+				while (line_index != 0) {
+					location_str = string_char_at(line,line_index) + location_str;
+					line_index--;
+				}
+				line_index = string_length(line) - 3;
+				while(string_char_at(line,line_index) != "(") {
+					item_player_str = string_char_at(line,line_index) + item_player_str;
+					line_index--;
+				}
+				show_debug_message("stage 5");
+				line_index--;
+				while (!end_item_bool) {
+					end_item_bool = (string_char_at(line,line_index - 2) == ")") && (string_char_at(line,line_index - 1) == ":") && (string_char_at(line,line_index) == " ");
+					item_str = string_char_at(line,line_index) + item_str;
+					line_index--;
 				}
 				
 				array_push(pair_array,{
@@ -84,13 +97,5 @@ if (stage == 2) {
 	show_message("Importer process failed.");
 	obj_am_import_spoiler.disabled = false;
 }
-
-layer_set_visible("importer",false);
-layer_set_visible("login_screen",true);
-layer_set_visible("settings",true);
-layer_set_visible("difficulty_customization",false);
-layer_set_visible("difficulty_customization_assets",false);
-layer_set_visible("assets",true);
-
 
 instance_destroy();
