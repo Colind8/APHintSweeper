@@ -76,7 +76,14 @@ for (var i = 0; i < array_length(data); ++i) {
 					break;
 				case "custom_item":
 					show_debug_message("custom item");
-					obj_custom_hint_item.find_item_by_name(data[i].keys.APHintSweeper_spoiler);
+					//var temp_arr = json_parse(base64_decode(data[i].keys.APHintSweeper_spoiler));
+					//obj_custom_hint_item.find_item_by_name(struct_get(data[i].keys,$"APHintSweeper_spoiler_{obj_custom_hint_item.playerid}"));
+					var _split = string_split(st_na[0],"_");
+					if (_split[0] == "APHintSweeper" && _split[1] == "spoiler") {
+						obj_custom_hint_item.build_item_array(struct_get(data[i].keys,
+						$"APHintSweeper_spoiler_{obj_custom_hint_item.playerid}_{_split[3]}_{_split[4]}"),
+						_split[3], _split[4]);
+					}
 					break;
 				case "chi_gethints":
 					obj_custom_hint_item.find_item_3(struct_get(data[i].keys,st_na[0]));
@@ -115,8 +122,9 @@ for (var i = 0; i < array_length(data); ++i) {
 						layer_set_visible("settings",true);
 						if (!admin_settings_exist) {
 							obj_am_login.temp_admin_settings = {
-								ver: 1,
+								ver: 2,
 								item_hints: false,
+								ihkt: [],
 								difficulties: []
 							}
 						} else {
@@ -124,7 +132,7 @@ for (var i = 0; i < array_length(data); ++i) {
 							if (obj_am_login.temp_admin_settings.item_hints) {
 								obj_am_import_spoiler.text = "Reimport Spoiler.txt"
 							}
-							obj_am_login.load_difficulties();
+							obj_am_login.update();
 						}
 					} else if (data[i].data[0].text == "Logout successful. You can no longer issue server side commands."){
 						if (!instance_exists(obj_am_login)) {
@@ -160,32 +168,55 @@ for (var i = 0; i < array_length(data); ++i) {
 			}  
 		}
 		if (data[i].cmd == "SetReply") {
+			var split = string_split(data[i].key,"_");
 			if (data[i].key == "APHintSweeper_settings") {
 				show_debug_message("APHintSweeper_settings set!");
 				if (array_length(obj_am_login.temp_spoiler) > 0) {
-					show_debug_message("Now setting APHintSweeper_spoiler...");
-					send_command({
-						cmd: "Set",
-						key: "APHintSweeper_spoiler",
-						want_reply: true,
-						operations: [
-							{
-								operation: "replace",
-								value: obj_am_login.temp_spoiler
-							}
-						]
-					});
+					if (instance_exists(obj_spoiler_saver)) {
+						send_command({cmd: "Say", text: $"!admin logout"});
+						admin_settings = obj_am_login.temp_admin_settings;
+						room_goto(rm_login);
+					} else {
+						show_debug_message("Now setting APHintSweeper_spoiler...");
+						instance_create_layer(0,0,"importer",obj_spoiler_saver);
+					}
 				} else {
 					send_command({cmd: "Say", text: $"!admin logout"});
 					admin_settings = obj_am_login.temp_admin_settings;
 					room_goto(rm_login);
 				}
 			}
-			if (data[i].key == "APHintSweeper_spoiler") {
-				show_debug_message("APHintSweeper_spoiler set!");
-				send_command({cmd: "Say", text: $"!admin logout"});
-				admin_settings = obj_am_login.temp_admin_settings;
-				room_goto(rm_login);
+			if ((split[0] == "APHintSweeper") && (split[1] == "spoiler")) {
+				if (split[2] != obj_spoiler_saver.slot_names[obj_spoiler_saver.ind]) {
+					show_debug_message("error?");
+					return;
+				}
+				show_debug_message($"{split[3]} / {split[4]}");
+				if (split[3] == split[4]) {
+					if (obj_spoiler_saver.ind < array_length(obj_spoiler_saver.slot_names) - 1) {
+						show_debug_message($"Spoiler settings {obj_spoiler_saver.ind} of {array_length(obj_spoiler_saver.slot_names)} done");
+						obj_spoiler_saver.ind++;
+						obj_spoiler_saver.save_player_spoiler();
+					} else {
+						show_debug_message("APHintSweeper_spoiler set!");
+						obj_am_login.temp_admin_settings.ihkt = obj_spoiler_saver.ihkt;
+						send_command({
+							cmd: "Set",
+							key: "APHintSweeper_settings",
+							want_reply: true,
+							operations: [
+								{
+									operation: "replace",
+									value: obj_am_login.temp_admin_settings
+								}
+							]
+						});
+					}
+				} else {
+					show_debug_message($"Spoiler split {obj_spoiler_saver.split_ind} of {array_length(obj_spoiler_saver.temp_arr)} done");
+					obj_spoiler_saver.split_ind++;
+					obj_spoiler_saver.save_spoiler_split();
+				}
 			}
 		}
 		if (data[i].cmd == "Bounced") {

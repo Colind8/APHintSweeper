@@ -6,8 +6,9 @@ admin_loggedin = false;
 message_color = c_black;
 login_message = "Logged out.";
 temp_admin_settings = {
-	ver: 1,
+	ver: 2,
 	item_hints: false,
+	ihkt: [],
 	difficulties: []
 }
 temp_spoiler = [];
@@ -24,6 +25,19 @@ function on_click() {
 	
 	obj_network.info_context = "admin_login";
 	send_command({cmd: "Say", text: $"!admin login {login_info}"});
+}
+
+function update() {
+	if (temp_admin_settings.ver == "1") {
+		temp_admin_settings = {
+			ver: 2,
+			item_hints: temp_admin_settings.item_hints,
+			ihkt: [],
+			difficulties: temp_admin_settings.difficulties
+		}
+	}
+	
+	load_difficulties();
 }
 
 function save_difficulty() {

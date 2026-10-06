@@ -70,10 +70,11 @@ while (!file_text_eof(file))
 					line_index--;
 				}
 				
+				
 				array_push(pair_array,{
 					loc: location_str,
 					loc_plr: location_player_str,
-					ite: item_str,
+					ite: string_trim(item_str),
 					ite_plr: item_player_str
 				});
 				show_debug_message($"Item {array_length(pair_array)} added!");
@@ -93,6 +94,7 @@ if (stage == 2) {
 	obj_am_login.temp_admin_settings.item_hints = true;
 	obj_am_login.temp_spoiler = pair_array;
 	show_message("Import complete!");
+	show_debug_message(pair_array);
 } else {
 	show_message("Importer process failed.");
 	obj_am_import_spoiler.disabled = false;

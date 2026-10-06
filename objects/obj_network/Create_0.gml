@@ -8,6 +8,8 @@ global.secure = false
 admin_settings_exist = false;
 admin_settings = {};
 info_context = ""; // The context of a Get
+spoiler_save_index = 0;
+temp_spoiler_array = [];
 
 if global.server = "archipelago.gg" {
 		global.secure = true

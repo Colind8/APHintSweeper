@@ -1,8 +1,11 @@
+temp_array = [];
 game_collection = []; // list of location players objects containing name, game, slotid, and teamid
 item_collection = []; // Holds structs containing the location and loc_player of each item
 games_array = [];  // list of all games
 game_index = 0; //
 package = {};
+playerid = -1;
+key_amount = "?";
 
 layer_set_visible("item_hint",false);
 layer_set_visible("default",false);
@@ -10,12 +13,50 @@ layer_set_visible("hint_processing",true);
 
 obj_network.info_context = "custom_item";
 
+for (var i = 0; i < struct_names_count(global.connection_info.slot_info); i++) {
+	if (struct_get(global.connection_info.slot_info,$"{i + 1}").name == global.name) {
+		playerid = i + 1;
+	}
+}
+
+if (playerid == -1) {
+	instance_create_layer(0,0,"notifications",obj_hint_notification,{title: "Error", desc: "You don't exist?"});
+	layer_set_visible("item_hint",false);
+	layer_set_visible("default",false);
+	layer_set_visible("hint_processing",true);
+	return;
+}
+
+for (var i = 0; i < array_length(obj_network.admin_settings.ihkt); i++) {
+	var _split = string_split(obj_network.admin_settings.ihkt[i],"_");
+	if (_split[0] == string(playerid)) {
+		key_amount = _split[1];
+		break;
+	}
+}
+
 send_command({
 	cmd: "Get",
 	keys: [
-		"APHintSweeper_spoiler"
+		$"APHintSweeper_spoiler_{playerid}_1_{key_amount}"
 	]
 });
+
+function build_item_array(data,a,b) {
+	temp_array = array_union(temp_array,data);
+	_a = int64(a);
+	show_debug_message($"\na == b: {a == b}")
+	if (a == b) {
+		find_item_by_name(temp_array);
+	} else {
+		send_command({
+			cmd: "Get",
+			keys: [
+				$"APHintSweeper_spoiler_{playerid}_{_a + 1}_{b}"
+			]
+		});
+	}
+}
 
 /// @desc Gets the location names of all items matching the name
 /// @param {array} data Spoiler Array

@@ -4,6 +4,7 @@ event_inherited();
 function on_click() {
 	save();
 	disabled = true;
+	
 	send_command({
 		cmd: "Set",
 		key: "APHintSweeper_settings",

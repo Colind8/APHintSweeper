@@ -8,7 +8,7 @@ function send_command(_contents) {
 		}
 	}
 	aa = json_stringify(arr)
-	show_debug_message(aa);
+	//show_debug_message(aa);
 	
 	var buffer = buffer_create(string_byte_length(aa), buffer_fixed,1)
 	buffer_seek(buffer, buffer_seek_start, 0)
