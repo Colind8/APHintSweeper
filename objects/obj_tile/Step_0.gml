@@ -15,6 +15,9 @@ if ((unearthed == false) && (obj_game.game_stopped == false)) {
 		if (mouse_check_button_released(mb_left) && !flagged) {
 			reveal();
 		} else if (mouse_check_button_pressed(mb_right)) {
+			if (obj_game.unplaced_flags == 0 && !flagged) {
+				return;
+			}
 			flagged = !flagged;
 			if (obj_game.flag_board[_y][_x] == 0) {
 				obj_game.flag_board[_y][_x] = 1; // mark flagged

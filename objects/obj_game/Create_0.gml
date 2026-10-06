@@ -3,6 +3,7 @@ randomize();
 show_debug_message("Created!")
 
 flags_to_place = total_mines;
+unplaced_flags = total_mines;
 first_click = true;
 game_stopped = false;
 
@@ -143,8 +144,12 @@ if (time != -1) {
 function check() {
 	var correct_mines = 0;
 	flags_to_place = total_mines;
+	unplaced_flags = total_mines;
 	for (var i = 0; i < board_height; i++) {
 		for (var j = 0; j < board_width; j++) {
+			if ((flag_board[i][j] == 1)) {
+				unplaced_flags--;
+			}
 			if ((board[i][j] == 9) && (flag_board[i][j] == 1)) { //if mine flagged
 				correct_mines++;
 				flags_to_place--;
