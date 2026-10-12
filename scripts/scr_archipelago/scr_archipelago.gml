@@ -33,3 +33,11 @@ function send_hint(location, player) {
 	
 	network_send_raw(global.socket, buffer, buffer_tell(buffer),network_send_text)
 }
+
+function create_notification(data) {
+	var message = "";
+	for (var i = 0; i < array_length(data.data); i++) {
+		message += data.data[i];
+	}
+	instance_create_layer(0,0,"notifications",obj_hint_notification,{title: $"Hint Created!", desc: $"{message}"});
+}

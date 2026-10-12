@@ -9,6 +9,13 @@ if (type == network_type_up_failed) {
 	show_debug_message("Connection failure");
 	
 }
+if (type == network_type_down) {
+	show_debug_message("Connection failure");
+	
+}
+if (type == network_type_disconnect) {
+	show_debug_message("Disconnected");
+}
 
 if(async_load[? "size"] > 0){
 	var buff = async_load[? "buffer"];
@@ -51,6 +58,9 @@ for (var i = 0; i < array_length(data); ++i) {
 				case "custom_item":
 					obj_custom_hint_item.find_item_by_name_2(data[i].data.games);
 					break;
+				case "random_location":
+					obj_random_hint_location.summon_scouts(data[i].data.games);
+					break;
 			}
 		}
 		if (data[i].cmd == "Retrieved") {
@@ -87,6 +97,9 @@ for (var i = 0; i < array_length(data); ++i) {
 					break;
 				case "chi_gethints":
 					obj_custom_hint_item.find_item_3(struct_get(data[i].keys,st_na[0]));
+					break;
+				case "random_location":
+					obj_random_hint_location.randhintloc_2(struct_get(data[i].keys,st_na[0]));
 					break;
 			}
 		}
@@ -165,6 +178,12 @@ for (var i = 0; i < array_length(data); ++i) {
 						obj_am_login.admin_loggedin = false;
 					}
 				}
+				if (data[i].type == "Hint") {
+					if (room == rm_game) {
+						show_debug_message(data[i]);
+						create_notification(data[i]);
+					}
+				}
 			}  
 		}
 		if (data[i].cmd == "SetReply") {
@@ -236,6 +255,14 @@ for (var i = 0; i < array_length(data); ++i) {
 						obj_game.game_over(-1,-1, true);
 					}
 				}
+			}
+		}
+		if (data[i].cmd == "LocationInfo") {
+			switch (info_context) {
+				case "random_location":
+					// to be implemented
+					//obj_random_hint_location.randhintloc(data[i].locations)
+					break;
 			}
 		}
 	}
