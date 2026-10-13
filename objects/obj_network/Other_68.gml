@@ -58,8 +58,8 @@ for (var i = 0; i < array_length(data); ++i) {
 				case "custom_item":
 					obj_custom_hint_item.find_item_by_name_2(data[i].data.games);
 					break;
-				case "random_location":
-					obj_random_hint_location.summon_scouts(data[i].data.games);
+				case "random_item":
+					obj_random_hint_item.pick_random_item_2(data[i].data.games);
 					break;
 			}
 		}
@@ -100,6 +100,20 @@ for (var i = 0; i < array_length(data); ++i) {
 					break;
 				case "random_location":
 					obj_random_hint_location.randhintloc_2(struct_get(data[i].keys,st_na[0]));
+					break;
+				case "random_item":
+					show_debug_message("random item");
+					//var temp_arr = json_parse(base64_decode(data[i].keys.APHintSweeper_spoiler));
+					//obj_custom_hint_item.find_item_by_name(struct_get(data[i].keys,$"APHintSweeper_spoiler_{obj_custom_hint_item.playerid}"));
+					var _split2 = string_split(st_na[0],"_");
+					if (_split2[0] == "APHintSweeper" && _split2[1] == "spoiler") {
+						obj_random_hint_item.build_item_array(struct_get(data[i].keys,
+						$"APHintSweeper_spoiler_{obj_random_hint_item.playerid}_{_split2[3]}_{_split2[4]}"),
+						_split2[3], _split2[4]);
+					}
+					break;
+				case "ri_gethints":
+					obj_random_hint_item.pick_random_item_3(struct_get(data[i].keys,st_na[0]));
 					break;
 			}
 		}
@@ -180,8 +194,9 @@ for (var i = 0; i < array_length(data); ++i) {
 				}
 				if (data[i].type == "Hint") {
 					if (room == rm_game) {
-						show_debug_message(data[i]);
-						create_notification(data[i]);
+						//to be implemented
+						//show_debug_message(data[i]);
+						//create_notification(data[i]);
 					}
 				}
 			}  
@@ -260,9 +275,21 @@ for (var i = 0; i < array_length(data); ++i) {
 		if (data[i].cmd == "LocationInfo") {
 			switch (info_context) {
 				case "random_location":
-					// to be implemented
-					//obj_random_hint_location.randhintloc(data[i].locations)
+					obj_random_hint_location.randhintloc(data[i].locations)
 					break;
+			}
+		}
+		if (data[i].cmd == "RoomUpdate") {
+			show_debug_message(data[i]);
+			if (struct_exists(data[i],"checked_locations")) {
+				for (var k = 0; k < array_length(data[i].checked_locations); k++) {
+					for (var j = 0; j < array_length(global.connection_info.missing_locations); j++) {
+						if (global.connection_info.missing_locations[j] == data[i].checked_locations[k]) {
+							array_push(global.connection_info.checked_locations,data[i].checked_locations[k]);
+							array_delete(global.connection_info.missing_locations,j,1);
+						}
+					}
+				}
 			}
 		}
 	}

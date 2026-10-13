@@ -1,5 +1,10 @@
 obj_network.info_context = "random_location";
 
+image_xscale = 40;
+image_yscale = 20;
+x = (room_width/2) - (sprite_width / 2);
+y = (room_height/2) - (sprite_height / 2);
+
 /*send_command({
 	cmd: "GetDataPackage",
 	games: [global.game_name]

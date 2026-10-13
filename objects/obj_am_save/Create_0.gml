@@ -90,18 +90,6 @@ function save() {
 						if (text == "") {
 							text = sample_text;
 						}
-						obj_am_login.temp_admin_settings.difficulties[other.index].reward_weights.useful_ite = int64(text);
-						break;
-					case 13:
-						if (text == "") {
-							text = sample_text;
-						}
-						obj_am_login.temp_admin_settings.difficulties[other.index].reward_weights.progre_ite = int64(text);
-						break;
-					case 14:
-						if (text == "") {
-							text = sample_text;
-						}
 						obj_am_login.temp_admin_settings.difficulties[other.index].reward_weights.hint_token = int64(text);
 						break;
 				}
